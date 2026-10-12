@@ -9,8 +9,27 @@ on:
       - main
 
 jobs:
-  build:
+  test:
+    name: Tests
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests
+        run: npm test
+
+  build:
+    name: Build image
+    runs-on: ubuntu-latest
+    # Do not build the image if the tests fail.
+    needs: test
 
     steps:
       - name: Checkout repository

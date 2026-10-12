@@ -1,0 +1,9 @@
+{
+  "name": "vanilla-photo-gallery",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A vanilla HTML/CSS/JS photo gallery served by nginx",
+  "scripts": {
+    "test": "node --test"
+  }
+}

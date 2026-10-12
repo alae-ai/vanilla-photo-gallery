@@ -20,9 +20,33 @@ PhotoGallery/
 ├── index.html
 ├── css/
 │   └── gallery.css
-└── js/
-    └── gallery.js
+├── js/
+│   └── gallery.js
+├── tests/
+│   ├── dom-stub.js
+│   ├── gallery.test.js
+│   └── structure.test.js
+├── Dockerfile
+└── .github/workflows/
+    ├── ci.yml
+    └── cd.yml
 ```
+
+## Tests
+
+The gallery is checked with Node's built-in test runner — no dependencies to install.
+
+```bash
+npm test
+```
+
+The suite covers JavaScript syntax and load-time errors, the behaviour of
+`upDate()` and `unDo()`, and the markup contract between `index.html` and
+`js/gallery.js` (required files, asset references, alt text, closing tags).
+
+CI and CD both run these tests in a dedicated `test` job that the `build` and
+`deploy` jobs depend on, so a failing test blocks the image from being built,
+pushed, or deployed.
 
 ## Getting Started
 

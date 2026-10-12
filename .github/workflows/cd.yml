@@ -6,8 +6,27 @@ on:
       - main
 
 jobs:
-  deploy:
+  test:
+    name: Tests
     runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run tests
+        run: npm test
+
+  deploy:
+    name: Deploy image
+    runs-on: ubuntu-latest
+    # Do not build or push the image if the tests fail.
+    needs: test
 
     steps:
       - name: Checkout repository
